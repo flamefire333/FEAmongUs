@@ -57,7 +57,7 @@ if($_GET["setup"]) {
     $curr = 1;
     $pdata = array();
     $usedColors = array();
-    $colors = array("red", "black", "green", "pink", "orange", "purple", "brown", "cyan", "dark-blue", "yellow", "white", "light-green");
+    $colors = array("red", "black", "dark-green", "pink", "orange", "purple", "brown", "cyan", "dark-blue", "yellow", "white", "light-green");
     while($curr < count($costumes) && $curr <= 10 && $curr <= $pc) {
         $currCostume = $costumes[$curr - 1];
         $currName = $currCostume->name;
