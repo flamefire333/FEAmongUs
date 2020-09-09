@@ -131,31 +131,40 @@ if($_GET["setup"]) {
         echo "<script>
         function refreshPlayerList() {
             var xhttp = new XMLHttpRequest();
+            var trash = Math.random();
             xhttp.onreadystatechange= function() {
                 if (this.readyState == 4 && this.status == 200) {
                     document.getElementById('PlayerList').innerHTML = this.responseText;
                 }
             };
-            xhttp.open('GET', 'amongus.php?list=1&join=" . strval($gameID) . "', true);
+            xhttp.open('GET', 'amongus.php?list=1&trash=' + trash + '&join=" . strval($gameID) . "', true);
             xhttp.send();
         }
         function refreshPInfo() {
             var xhttp = new XMLHttpRequest();
+            var trash = Math.random();
             xhttp.onreadystatechange = function() {
                 if(this.readyState == 4 && this.status == 200) {
                     document.getElementById('pinfo').innerHTML = this.responseText;
                 }
             };
-            xhttp.open('GET', 'amongus.php?pinfo="  . strval($name) . "', true);
+            xhttp.open('GET', 'amongus.php?pinfo="  . strval($name) . "&trash=' + trash, true);
             xhttp.send();
         }
+        function refresh() {
+            refreshPlayerList();
+            refreshPInfo();
+        }
+        refresh();
+        var interval = setInterval(function(){refresh();}, 5000);
         </script>";
         echo "<table id='PlayerList'></table><br /><button type='button' onclick='refreshPlayerList();refreshPInfo()'>Refresh</button>";
         if($name == $fileGameData[1]) {    
             echo "<script>
                 function setup() {
                 var xhttp = new XMLHttpRequest();
-                xhttp.open('GET', 'amongus.php?setup=1&join=" . strval($gameID) . "', true);
+                var trash = Math.random();
+                xhttp.open('GET', 'amongus.php?setup=1&trash=' + trash + '&join=" . strval($gameID) . "', true);
                 xhttp.send();
             }
             </script>";
